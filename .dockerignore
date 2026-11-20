@@ -1,0 +1,32 @@
+# Git & Version Control (Crucial for build caching)
+.git
+.gitignore
+.gitattributes
+
+# Docker Files (Not needed inside the container)
+Dockerfile*
+docker-compose*
+.dockerignore
+
+# Secrets & Local Configs
+.env
+.env.*
+*.pem
+*.key
+
+# Dependencies & Build Artifacts (Let the container build/install these fresh)
+node_modules/
+bin/
+obj/
+__pycache__/
+dist/
+build/
+
+# Logs, Tests & Docs
+*.log
+logs/
+tests/
+__tests__/
+README.md
+.vscode/
+.idea/
