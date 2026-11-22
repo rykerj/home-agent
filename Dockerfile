@@ -5,9 +5,11 @@ ENV PLAYWRIGHT_BROWSERS_PATH=/ms-playwright
 
 COPY bridge/groupme-notify-skill.md /opt/hermes-skills/groupme-notify/SKILL.md
 
-    # Install system dependencies, git, tini, and GitHub CLI (gh)
+# Install system dependencies, git, tini, GitHub CLI (gh), and Tailscale.
+# Tailscale gives the container a stable mesh IP on your home network so it can
+# reach services served over Tailscale (dashboard, Ollama) reliably.
 RUN apt-get update && apt-get install -y --no-install-recommends \
-    git curl ca-certificates tini libatomic1 gh \
+    git curl ca-certificates tini libatomic1 gh tailscale \
     && rm -rf /var/lib/apt/lists/*
 
 

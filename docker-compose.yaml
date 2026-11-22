@@ -37,11 +37,11 @@ services:
     security_opt:
       - no-new-privileges:true
     command: >
-      bash -c "mkdir -p /home/hermes/.hermes/skills/groupme-notify &&
-           cp -n /opt/hermes-skills/groupme-notify/SKILL.md /home/hermes/.hermes/skills/groupme-notify/SKILL.md;
+      bash -c "set -e;
+           mkdir -p /home/hermes/.hermes/skills/groupme-notify && chmod 0755 /home/hermes/.hermes/skills/groupme-notify &&
+           cp --force /opt/hermes-skills/groupme-notify/SKILL.md /home/hermes/.hermes/skills/groupme-notify/SKILL.md && chmod 0644 /home/hermes/.hermes/skills/groupme-notify/SKILL.md;
            yes | hermes skills install official/research/scrapling || true;
-           python3 /bridge/bridge.py &
-           exec hermes gateway run"
+           python3 /bridge/bridge.py &";
     environment:
       - GITHUB_TOKEN=${GITHUB_TOKEN}
       - GIT_AUTHOR_NAME=Hermes Agent
